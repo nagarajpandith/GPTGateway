@@ -1,2 +1,3 @@
 /venv/**
 .flaskenv
+.vercel
