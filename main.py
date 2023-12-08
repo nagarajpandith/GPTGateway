@@ -1,8 +1,13 @@
 from flask import Flask, request, Response, jsonify
 import g4f
 import sys
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 app = Flask(__name__)
+
+API_KEY = os.environ.get('API_KEY')
 
 def generate_response(model, llm, content):
     response_generator = g4f.ChatCompletion.create(
@@ -19,11 +24,19 @@ def generate_response(model, llm, content):
 def chat_completion():
     data = request.get_json()
 
-    if 'content' not in data or 'provider' not in data:
-        return jsonify({"error": "Missing 'content' or 'provider' in the request"}), 400
+    required_params = {'content', 'provider', 'api_key'}
+    missing_params = required_params - set(data.keys())
+
+    if missing_params:
+        error_msg = f"Missing parameters: {', '.join(missing_params)}"
+        return jsonify({"error": error_msg}), 400
 
     content = data['content']
     pname = data['provider']
+    api_key = data['api_key']
+
+    if not api_key == API_KEY:
+        return jsonify({"error": "Invalid API key"}), 401
 
     try:
         llm = getattr(getattr(getattr(sys.modules[__name__], "g4f"), "Provider"), pname)
@@ -32,7 +45,7 @@ def chat_completion():
 
     model = "gpt-3.5-turbo"
 
-    return Response(generate_response(model, llm, content), mimetype="text/event-stream")
+    return Response(generate_response(model, llm, content), content_type='text/plain', mimetype='text/event-stream')
 
 @app.route('/working_providers', methods=['GET'])
 def working_providers():

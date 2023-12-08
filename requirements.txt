@@ -50,6 +50,7 @@ pydantic_core==2.14.5
 PyExecJS==1.5.1
 pyjsparser==2.7.1
 PySocks==1.7.1
+python-dotenv==1.0.0
 requests==2.31.0
 selenium==4.16.0
 six==1.16.0
