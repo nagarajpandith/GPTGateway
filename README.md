@@ -11,5 +11,5 @@ pip3 install -r requirements.txt
 Create a .flaskenv file and fill the API_KEY var.
 
 ```bash
-python3 api/index.py
+python3 index.py
 ```
