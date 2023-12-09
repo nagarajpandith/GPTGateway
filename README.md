@@ -30,7 +30,7 @@ python3 index.py
 1. Using `curl`
 
 ```bash
-curl -X POST -H "Content-Type: application/json" -d '{"content": "YOUR_PROMPT", "provider": "PROVIDER_NAME", "api_key":"API_KEY_HERE"}' http://127.0.0.1:5000/chat_completion
+curl -X POST -H "Content-Type: application/json" -d '{"content": "YOUR_PROMPT", "api_key":"API_KEY_HERE", "provider": "PROVIDER_NAME", "stream": false}' http://127.0.0.1:5000/chat_completion
 ```
 
 2. Using Any API testing platform like Postman, Thunder client etc.
@@ -41,8 +41,9 @@ curl -X POST -H "Content-Type: application/json" -d '{"content": "YOUR_PROMPT", 
 ```json
 {
   "content": "YOUR_PROMPT",
+  "api_key": "API_KEY_HERE",
   "provider": "PROVIDER_NAME",
-  "api_key": "API_KEY_HERE"
+  "stream": false
 }
 ```
 
@@ -53,8 +54,11 @@ curl -X POST -H "Content-Type: application/json" -d '{"content": "YOUR_PROMPT", 
 
 | Endpoint             | Description                                        | Method | Example Body                                                                        |
 | -------------------- | -------------------------------------------------- | ------ | ----------------------------------------------------------------------------------- |
-| `/chat_completion`   | Generates text using LLM & Model based on Provider | POST   | `{"content": "YOUR_PROMPT", "provider": "PROVIDER_NAME","api_key": "API_KEY_HERE"}` |
+| `/chat_completion`   | Generates text using LLM & Model based on Provider | POST   | `{"content": "YOUR_PROMPT", "api_key": "API_KEY_HERE", "provider": "PROVIDER_NAME", "stream": false}` |
 | `/working_providers` | Retrieves a list of Working Providers              | GET    | `{}`                                                                                |
+
+> [!TIP]
+> The provider and stream parameters are optional. If not provided, the default provider is set to "You" and the default stream is set to true. If stream is set to false, the response will be in direct final output format.
 
 ## Providers Testing Results
 
