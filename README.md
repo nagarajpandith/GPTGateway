@@ -1,15 +1,15 @@
-# GPT Flask API
+# GPTGateway
 
-A RESTful web service created using the [xtekky/gpt4free](https://github.com/xtekky/gpt4free) library.
+A RESTful web service created to provide a simple API for generating text using various GPT models based on different providers. Whether you want to integrate chat completion into your application or explore the capabilities of different GPT models, this project has you covered.
 
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/nagarajpandith/gpt-flask)
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/nagarajpandith/GPTGateway)
 
 ```bash
 # Clone the repository
-git clone https://github.com/nagarajpandith/gpt-flask.git
+git clone https://github.com/nagarajpandith/GPTGateway.git
 
 # Navigate to the project directory
-cd gpt-flask
+cd GPTGateway
 
 # Create a virtual environment
 python3 -m venv venv
@@ -50,17 +50,17 @@ curl -X POST -H "Content-Type: application/json" -d '{"content": "YOUR_PROMPT", 
 ```
 
 > [!NOTE]
-> If you want to use the Hosted API, it's live at [https://gpt-flask.onrender.com](https://gpt-flask.onrender.com/). For the API key, email me at [nagaraj.pandith2002@gmail.com](mailto:nagaraj.pandith2002@gmail.com).
+> If you want to use the Hosted API, it's live at [https://gptgateway.onrender.com](https://gptgateway.onrender.com/). For the API key, email me at [nagaraj.pandith2002@gmail.com](mailto:nagaraj.pandith2002@gmail.com).
 
 ## Available Endpoints
 
-| Endpoint             | Description                                        | Method | Example Body                                                                                          |
-| -------------------- | -------------------------------------------------- | ------ | ----------------------------------------------------------------------------------------------------- |
-| `/chat_completion`   | Generates text using LLM & Model based on Provider | POST   | `{"content": "YOUR_PROMPT", "api_key": "API_KEY_HERE", "provider": "PROVIDER_NAME", "stream": false}` |
-| `/working_providers` | Retrieves a list of Working Providers              | GET    | `{}`                                                                                                  |
+| Endpoint             | Description                                  | Method | Example Body                                                                                          |
+| -------------------- | -------------------------------------------- | ------ | ----------------------------------------------------------------------------------------------------- |
+| `/chat_completion`   | Generates text using Model based on Provider | POST   | `{"content": "YOUR_PROMPT", "api_key": "API_KEY_HERE", "provider": "PROVIDER_NAME", "stream": false}` |
+| `/working_providers` | Retrieves a list of Working Providers        | GET    | `{}`                                                                                                  |
 
 > [!TIP]
-> The provider and stream parameters are optional. If not provided, the default provider is set to "You" and the default stream is set to true. If stream is set to false, the response will be in direct final output format.
+> The provider and stream parameters are optional. If not provided, the default provider is set to "Bing" and the default stream is set to true. If stream is set to false, the response will be in direct final output format.
 
 ## Providers Testing Results
 

@@ -6,12 +6,12 @@ from dotenv import load_dotenv
 load_dotenv()
 API_KEY = os.environ.get('API_KEY')
 
-hosted_providers_url = "https://gpt-flask.onrender.com/working_providers"
+hosted_providers_url = "https://gptgateway.onrender.com/working_providers"
 response = requests.get(hosted_providers_url)
 providers = response.json().get("working_providers", [])
 
 local_endpoint = "http://127.0.0.1:5000/chat_completion"
-hosted_endpoint = "https://gpt-flask.onrender.com/chat_completion"
+hosted_endpoint = "https://gptgateway.onrender.com/chat_completion"
 
 example_body_base = {
     "content": "Hello!",

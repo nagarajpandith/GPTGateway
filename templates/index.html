@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        font-family: 'Arial', sans-serif;
+        margin: 20px;
+        padding: 20px;
+        background-color: #f8f8f8;
+      }
+
+      h1,
+      h2 {
+        color: #333;
+      }
+
+      p {
+        color: #555;
+      }
+
+      a {
+        color: #007bff;
+        text-decoration: none;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 20px;
+      }
+
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #007bff;
+        color: #fff;
+      }
+
+      code {
+        background-color: #f1f1f1;
+        padding: 2px 5px;
+        border-radius: 4px;
+        font-family: 'Courier New', monospace;
+      }
+    </style>
+    <title>GPT Gateway - Access GPT Models with Ease</title>
+    <meta
+      name="description"
+      content="GPTGateway - A powerful RESTful web service for accessing GPT models. A RESTful web service created to provide a simple API for generating text using various GPT models based on different providers. Whether you want to integrate chat completion into your application or explore the capabilities of different GPT models, this project has you covered."
+    />
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static', filename='favicon.ico') }}"
+    />
+  </head>
+  <body>
+    <div
+      style="
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        padding: 20px;
+      "
+    >
+      <div class="icon" style="color: rgb(0, 0, 0); background-color: #f8f8f8">
+        <svg
+          stroke="currentColor"
+          fill="currentColor"
+          stroke-width="0"
+          viewBox="0 0 512 512"
+          height="200px"
+          width="200px"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M251.313 23.844L49.438 140.25l-.376 233.5 202.625 116.406L453.563 373.75l.375-233.5L251.313 23.844zm-1.407 57.062l52.406 30.25v60.5l-52.406 30.25-52.406-30.25v-60.5l52.406-30.25zm-105.344 60.47l52.407 30.25v60.5l-52.407 30.25 52.406 30.25v60.53l-52.407 30.25-52.407-30.25v-60.53l52.406-30.25-52.406-30.25v-60.5l52.406-30.25zm210.313 0l52.406 30.25v60.5l-52.405 30.25 52.406 30.25v60.53l-52.405 30.25-52.406-30.25v-60.53l52.405-30.25-52.406-30.25v-60.5l52.405-30.25zM249.905 202l52.407 30.25v60.5l-52.28 30.188 52.28 30.156v60.53l-52.406 30.25-52.406-30.25v-60.53l52.28-30.156-52.28-30.188v-60.5L249.906 202z"
+          ></path>
+        </svg>
+      </div>
+
+      <div style="flex-grow: 1; padding: 0 20px">
+        <h1>Welcome to GPT Gateway!</h1>
+        <p>
+          A RESTful web service created to provide a simple API for generating
+          text using various GPT models based on different providers. Whether
+          you want to integrate chat completion into your application or explore
+          the capabilities of different GPT models, this project has you
+          covered.
+        </p>
+        <p>
+          If you want to use the Hosted API, it's live at
+          <a href="https://gptgateway.onrender.com"
+            >https://gptgateway.onrender.com</a
+          >.
+        </p>
+        <p>
+          For the API key, email me at
+          <a href="mailto:nagaraj.pandith2002@gmail.com"
+            >nagaraj.pandith2002@gmail.com</a
+          >.
+        </p>
+      </div>
+    </div>
+
+    <h2>Available Endpoints</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Endpoint</th>
+          <th>Description</th>
+          <th>Method</th>
+          <th>Example Body</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>/chat_completion</td>
+          <td>Generates text using Model based on Provider</td>
+          <td>POST</td>
+          <td>
+            <code
+              >{"content": "YOUR_PROMPT", "api_key": "API_KEY_HERE", "provider":
+              "PROVIDER_NAME", "stream": false}</code
+            >
+          </td>
+        </tr>
+        <tr>
+          <td>/working_providers</td>
+          <td>Retrieves a list of Working Providers</td>
+          <td>GET</td>
+          <td><code>{}</code></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>
+      The provider and stream parameters are optional. If not provided, the
+      default provider is set to "Bing" and the default stream is set to true.
+      If stream is set to false, the response will be in direct final output
+      format.
+    </p>
+  </body>
+</html>

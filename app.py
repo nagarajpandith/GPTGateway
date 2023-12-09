@@ -1,16 +1,23 @@
-from flask import Flask, request, Response, jsonify
+from flask import Flask, request, Response, jsonify, render_template, url_for
 import g4f
 import sys
+
 import os
 from dotenv import load_dotenv
 load_dotenv()
 API_KEY = os.environ.get('API_KEY')
 
 from flask_cors import CORS
-
 app = Flask(__name__)
 CORS(app)
 
+@app.route('/favicon.ico')
+def favicon():
+    return url_for('static', filename='/favicon.ico')
+
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 def generate_response(model, llm, content):
     response_generator = g4f.ChatCompletion.create(
@@ -35,7 +42,7 @@ def chat_completion():
         return jsonify({"error": error_msg}), 400
 
     content = data['content']
-    pname = data.get('provider', 'You')  # Use 'You' by default, if not provided
+    pname = data.get('provider', 'Bing')  # Use 'Bing' by default, if not provided
     api_key = data['api_key']
     stream = data.get('stream', True)  # Use True by default, if not provided
 
