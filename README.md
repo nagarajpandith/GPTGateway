@@ -19,7 +19,7 @@ source venv/bin/activate
 pip3 install -r requirements.txt
 ```
 
-Create a .flaskenv file and fill the API_KEY var.
+Create an .env file and fill the API_KEY var.
 
 ```bash
 python3 index.py
@@ -62,7 +62,7 @@ curl -X POST -H "Content-Type: application/json" -d '{"content": "YOUR_PROMPT", 
 
 ## Providers Testing Results
 
-> (Last Tested on 9-12-2023)
+> Last Tested on 9-12-2023 using "stream"=False
 
 > [!IMPORTANT]  
 > If a Provider isn't working, it's probably because it needs special args like auth='cookie' or 'jwt' or the WebDriver fails to connect, as web scraping is needed for most of the providers here or IP address blocking etc. Hence, do not consider the below results as final source of truth. To test it yourself, run `python3 test.py` script.

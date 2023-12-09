@@ -15,7 +15,8 @@ hosted_endpoint = "https://gpt-flask.onrender.com/chat_completion"
 
 example_body_base = {
     "content": "Hello!",
-    "api_key": API_KEY
+    "api_key": API_KEY,
+    "stream": False
 }
 
 def test_provider(provider, endpoint):
@@ -27,12 +28,24 @@ def test_provider(provider, endpoint):
     try:
         response = requests.post(endpoint, json=example_body, timeout=60) 
         response.raise_for_status()
+
+        if response.text.strip() == '':
+            raise Exception('Empty result')
+        if 'support@chatbase.co' in response.text:
+            raise Exception('ChatBase.co')
+
     except requests.exceptions.Timeout:
         print(f"{provider} - Request timed out after 60 seconds")
         return 408, 60
+
     except requests.exceptions.RequestException as e:
         print(f"{provider} - Request failed with error: {e}")
         return 500, 0
+
+    except Exception as e:
+        print(f"{provider} - Error: {e}")
+        return 500, 0
+
 
     end_time = time.time()
     elapsed_time = end_time - start_time
