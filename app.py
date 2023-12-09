@@ -80,4 +80,4 @@ def working_providers():
     return jsonify({"working_providers": working_providers_list})
 
 if __name__ == '__main__':
-    app.run(threaded=True)
+    app.run(threaded=True, host='0.0.0.0', port=3000)

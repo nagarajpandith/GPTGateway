@@ -24,7 +24,7 @@ pip3 install -r requirements.txt
 Create an .env file and fill the API_KEY var.
 
 ```bash
-python3 index.py
+python3 app.py
 ```
 
 ## Local Usage
