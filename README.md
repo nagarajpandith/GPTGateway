@@ -2,6 +2,8 @@
 
 A RESTful web service created using the [xtekky/gpt4free](https://github.com/xtekky/gpt4free) library.
 
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/nagarajpandith/gpt-flask)
+
 ```bash
 # Clone the repository
 git clone https://github.com/nagarajpandith/gpt-flask.git
@@ -52,10 +54,10 @@ curl -X POST -H "Content-Type: application/json" -d '{"content": "YOUR_PROMPT", 
 
 ## Available Endpoints
 
-| Endpoint             | Description                                        | Method | Example Body                                                                        |
-| -------------------- | -------------------------------------------------- | ------ | ----------------------------------------------------------------------------------- |
+| Endpoint             | Description                                        | Method | Example Body                                                                                          |
+| -------------------- | -------------------------------------------------- | ------ | ----------------------------------------------------------------------------------------------------- |
 | `/chat_completion`   | Generates text using LLM & Model based on Provider | POST   | `{"content": "YOUR_PROMPT", "api_key": "API_KEY_HERE", "provider": "PROVIDER_NAME", "stream": false}` |
-| `/working_providers` | Retrieves a list of Working Providers              | GET    | `{}`                                                                                |
+| `/working_providers` | Retrieves a list of Working Providers              | GET    | `{}`                                                                                                  |
 
 > [!TIP]
 > The provider and stream parameters are optional. If not provided, the default provider is set to "You" and the default stream is set to true. If stream is set to false, the response will be in direct final output format.
@@ -63,9 +65,6 @@ curl -X POST -H "Content-Type: application/json" -d '{"content": "YOUR_PROMPT", 
 ## Providers Testing Results
 
 > Last Tested on 9-12-2023 using "stream"=False
-
-> [!IMPORTANT]  
-> If a Provider isn't working, it's probably because it needs special args like auth='cookie' or 'jwt' or the WebDriver fails to connect, as web scraping is needed for most of the providers here or IP address blocking etc. Hence, do not consider the below results as final source of truth. To test it yourself, run `python3 test.py` script.
 
 > [!NOTE]
 > To know the Providers and their Models refer [this](https://github.com/xtekky/gpt4free?tab=readme-ov-file#-providers-and-models).
@@ -77,41 +76,77 @@ curl -X POST -H "Content-Type: application/json" -d '{"content": "YOUR_PROMPT", 
 - **Hosted:** The provider works successfully only on the hosted API.
 - **None:** The provider did not return a successful response on either the local or hosted API.
 
+### Automated Testing
+
+> [!IMPORTANT]  
+> If a Provider isn't working, it's probably because it needs special args like auth='cookie' or 'jwt' or the WebDriver fails to connect, as web scraping is needed for most of the providers here or IP address blocking etc. Hence, do not consider the below results as final source of truth. To test it yourself, run `python3 test.py` script.
+
 | Provider       | Local/Hosted/Both | Average Response Time |
 | -------------- | ----------------- | --------------------- |
 | AItianhuSpace  | None              | 0.0000                |
-| AiChatOnline   | Both              | 1.7481                |
+| AiChatOnline   | Both              | 1.7414                |
 | Bard           | None              | 0.0000                |
-| Bing           | Both              | 7.1729                |
-| ChatBase       | Both              | 10.5962               |
-| ChatForAi      | Local             | 1.6945                |
+| Bing           | Both              | 7.5283                |
+| ChatBase       | Both              | 11.0944               |
+| ChatForAi      | None              | 0.0000                |
 | Chatgpt4Online | None              | 0.0000                |
-| ChatgptAi      | Both              | 4.0908                |
-| ChatgptNext    | Both              | 1.5508                |
-| DeepInfra      | Both              | 3.6010                |
+| ChatgptAi      | Both              | 4.0048                |
+| ChatgptNext    | Both              | 1.1684                |
+| DeepInfra      | Both              | 2.9104                |
 | FakeGpt        | None              | 0.0000                |
 | GPTalk         | None              | 0.0000                |
-| GeekGpt        | Local             | 2.3581                |
-| GptChatly      | Local             | 20.6423               |
+| GeekGpt        | Hosted            | 2.6676                |
+| GptChatly      | None              | 0.0000                |
 | GptForLove     | None              | 0.0000                |
-| GptGo          | Local             | 1.1042                |
-| GptTalkRu      | Both              | 1.2230                |
-| Hashnode       | Both              | 12.7480               |
+| GptGo          | Local             | 1.0809                |
+| GptTalkRu      | Both              | 1.3263                |
+| Hashnode       | Both              | 14.0748               |
 | HuggingChat    | None              | 0.0000                |
-| Koala          | Local             | 5.4211                |
+| Koala          | Local             | 2.3503                |
 | Liaobots       | None              | 0.0000                |
 | Llama2         | None              | 0.0000                |
-| MyShell        | Local             | 9.9238                |
-| OnlineGpt      | Both              | 2.1422                |
+| MyShell        | Local             | 9.0187                |
+| OnlineGpt      | Both              | 2.3497                |
 | OpenaiChat     | None              | 0.0000                |
-| PerplexityAi   | Local             | 7.9256                |
-| Phind          | Both              | 0.4448                |
-| Pi             | Local             | 9.1299                |
+| PerplexityAi   | Local             | 10.8567               |
+| Phind          | Both              | 0.4872                |
+| Pi             | Local             | 8.9026                |
 | Poe            | None              | 0.0000                |
 | Raycast        | None              | 0.0000                |
 | RetryProvider  | None              | 0.0000                |
-| TalkAi         | Local             | 11.4960               |
+| TalkAi         | Local             | 13.3812               |
 | Theb           | None              | 0.0000                |
 | ThebApi        | None              | 0.0000                |
-| You            | Local             | 1.1193                |
+| You            | Local             | 1.6147                |
 | Yqcloud        | None              | 0.0000                |
+
+### Manual Testing
+
+I tested these providers manually and I find them to be the most reliable & fast ones.
+
+| Provider     | Local/Hosted/Both | Average Response Time |
+| ------------ | ----------------- | --------------------- |
+| GptTalkRu    | Both              | 2-3s                  |
+| GeekGpt      | Both              | 6-8s                  |
+| ChatgptAi    | Both              | 5s                    |
+| ChatgptNext  | Both              | 7-8s                  |
+| AiChatOnline | Local             | 4s                    |
+| GptChatly    | Local             | 4-5s                  |
+| OnlineGpt    | Local             | 4s                    |
+| Bing         | Both              | 15-20s                |
+| ChatBase     | Both              | 12-13s                |
+| Koala        | Local             | 4s                    |
+| GptGo        | Local             | 12s                   |
+| You          | Local             | 10s                   |
+| MyShell      | Local             | 11s                   |
+| Pi           | Local             | 11s                   |
+| PerplexityAi | Local             | 14s                   |
+| Hashnode     | Both              | 18s                   |
+| TalkAi       | Local             | 20s                   |
+| DeepInfra    | Both              | 31-47s                |
+| Theb         | Local             | 12s                   |
+
+> [!IMPORTANT]
+>
+> - For GptChatly to work, you need to bypass Cloudflare captcha manually.
+> - GptTalkRu does not provide right answers usually. Needs detailed prompts.
