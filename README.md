@@ -64,12 +64,14 @@ curl -X POST -H "Content-Type: application/json" -d '{"content": "YOUR_PROMPT", 
 
 > (Last Tested on 9-12-2023)
 
-> To test it yourself, run `python3 test.py` script.
+> [!IMPORTANT]  
+> If a Provider isn't working, it's probably because it needs special args like auth='cookie' or 'jwt' or the WebDriver fails to connect, as web scraping is needed for most of the providers here or IP address blocking etc. Hence, do not consider the below results as final source of truth. To test it yourself, run `python3 test.py` script.
 
 > [!NOTE]
 > To know the Providers and their Models refer [this](https://github.com/xtekky/gpt4free?tab=readme-ov-file#-providers-and-models).
 
 **Status Values**
+
 - **Both:** The provider works successfully on both the local and hosted API.
 - **Local:** The provider works successfully only on the local API.
 - **Hosted:** The provider works successfully only on the hosted API.

@@ -27,7 +27,7 @@ def generate_response(model, llm, content):
 def chat_completion():
     data = request.get_json()
 
-    required_params = {'content', 'provider', 'api_key'}
+    required_params = {'content', 'api_key'}
     missing_params = required_params - set(data.keys())
 
     if missing_params:
@@ -35,8 +35,9 @@ def chat_completion():
         return jsonify({"error": error_msg}), 400
 
     content = data['content']
-    pname = data['provider']
+    pname = data.get('provider', 'You')  # Use 'You' by default, if not provided
     api_key = data['api_key']
+    stream = data.get('stream', True)  # Use True by default, if not provided
 
     if not api_key == API_KEY:
         return jsonify({"error": "Invalid API key"}), 401
@@ -50,7 +51,16 @@ def chat_completion():
     if not llm.supports_gpt_35_turbo:
         model = "gpt-4"
 
-    return Response(generate_response(model, llm, content), content_type='text/event-stream', mimetype='text/event-stream')
+    if stream:
+        return Response(generate_response(model, llm, content), content_type='text/event-stream', mimetype='text/event-stream')
+    else:
+        response = g4f.ChatCompletion.create(
+            model=model,
+            provider=llm,
+            messages=[{"role": "user", "content": content}],
+        )
+
+        return jsonify(response)
 
 @app.route('/working_providers', methods=['GET'])
 def working_providers():
