@@ -18,6 +18,7 @@ curl-cffi==0.5.10
 duckduckgo-search==3.9.11
 fastapi==0.104.1
 Flask==3.0.0
+Flask-Cors==4.0.0
 frozenlist==1.4.0
 g4f==0.1.9.2
 gunicorn==21.2.0

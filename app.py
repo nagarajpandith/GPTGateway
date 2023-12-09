@@ -4,8 +4,10 @@ import sys
 import os
 from dotenv import load_dotenv
 load_dotenv()
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 API_KEY = os.environ.get('API_KEY')
 
@@ -45,7 +47,7 @@ def chat_completion():
 
     model = "gpt-3.5-turbo"
 
-    return Response(generate_response(model, llm, content), content_type='text/plain', mimetype='text/event-stream')
+    return Response(generate_response(model, llm, content), content_type='text/event-stream', mimetype='text/event-stream')
 
 @app.route('/working_providers', methods=['GET'])
 def working_providers():
