@@ -4,12 +4,13 @@ import sys
 import os
 from dotenv import load_dotenv
 load_dotenv()
+API_KEY = os.environ.get('API_KEY')
+
 from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
 
-API_KEY = os.environ.get('API_KEY')
 
 def generate_response(model, llm, content):
     response_generator = g4f.ChatCompletion.create(
@@ -46,6 +47,8 @@ def chat_completion():
         return jsonify({"error": f"Invalid provider: {pname}"}), 400
 
     model = "gpt-3.5-turbo"
+    if not llm.supports_gpt_35_turbo:
+        model = "gpt-4"
 
     return Response(generate_response(model, llm, content), content_type='text/event-stream', mimetype='text/event-stream')
 
@@ -60,4 +63,4 @@ def working_providers():
     return jsonify({"working_providers": working_providers_list})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(threaded=True)

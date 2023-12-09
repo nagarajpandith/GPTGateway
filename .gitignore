@@ -2,3 +2,4 @@
 .flaskenv
 .vercel
 __pycache__
+.env
