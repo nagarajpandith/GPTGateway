@@ -1,8 +1,16 @@
-# GPTGateway
+# GPT Gateway
 
-A RESTful web service created to provide a simple API for generating text using various GPT models based on different providers. Whether you want to integrate chat completion into your application or explore the capabilities of different GPT models, this project has you covered.
+A RESTful web service created to provide a simple API for generating text using various GPT models based on different providers. Whether you want to integrate chat completion into your application or explore the capabilities of different GPT models, this project has you covered. Relies on [xtekky/gpt4free](https://github.com/xtekky/gpt4free).
 
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/nagarajpandith/GPTGateway)
+
+## Demo Usage
+
+An example app to showcase a demo of how this API can be used. The below app converts a YouTube video into Markdown blog which can be edited.
+
+https://github.com/nagarajpandith/GPTGateway/assets/83623339/6e6e274a-e968-41db-9c67-f9755f01164e
+
+## Project Setup
 
 ```bash
 # Clone the repository
@@ -50,7 +58,7 @@ curl -X POST -H "Content-Type: application/json" -d '{"content": "YOUR_PROMPT", 
 ```
 
 > [!NOTE]
-> If you want to use the Hosted API, it's live at [https://gptgateway.onrender.com](https://gptgateway.onrender.com/). For the API key, email me at [nagaraj.pandith2002@gmail.com](mailto:nagaraj.pandith2002@gmail.com).
+> You can host this API yourself but if you want to use already hosted API, it's live at [https://gptgateway.onrender.com](https://gptgateway.onrender.com/).
 
 ## Available Endpoints
 
@@ -150,3 +158,7 @@ I tested these providers manually and I find them to be the most reliable & fast
 >
 > - For GptChatly to work, you need to bypass Cloudflare captcha manually.
 > - GptTalkRu does not provide right answers usually. Needs detailed prompts.
+
+## Conclusion
+
+Just a hobby project for passing time, have no intentions of further development as it is just a simple wrapper around [GPT4Free](https://github.com/xtekky/gpt4free) project. Personally I wouldn't recommend usage of Providers for production usecases, they might go down any moment and are highly Unreliable. Instead host any of the Open source LLMs yourself. My personal choice would be [Mistral-7b](https://mistral.ai/news/announcing-mistral-7b/), which performs significantly better than Meta's [Llama2-13B](https://huggingface.co/meta-llama/Llama-2-13b) model. Checkout list of [Open Source LLMs](https://github.com/eugeneyan/open-llms) here and [Arena Leaderboard](https://chat.lmsys.org/) here (voted by the public).
